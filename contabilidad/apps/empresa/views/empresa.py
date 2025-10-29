@@ -44,7 +44,7 @@ class EmpresaViewSet(viewsets.ModelViewSet):
 
         # Continuar con la creación normal de la empresa (DRF llama a serializer.save())
         # El serializer ya se encarga de crear UserEmpresa y RolEmpresa
-        serializer.save(context={'request': self.request}) # Pasar el request al contexto del serializer si es necesario
+        serializer.save() 
 
     # El método create ahora solo llama a super().create o se puede eliminar si perform_create es suficiente
     # def create(self, request, *args, **kwargs):
