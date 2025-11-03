@@ -17,6 +17,7 @@ class AsientoContable(models.Model):
     id = models.UUIDField(primary_key=True,editable=False,default=uuid.uuid4)
     numero = models.PositiveIntegerField(blank=True,null=True)
     descripcion = models.CharField(max_length=100)
+    fecha = models.DateField(null=True,blank=True)
     empresa = models.ForeignKey(Empresa,on_delete=models.CASCADE,related_name='asientos')
     estado = models.CharField(max_length=10,choices=ESTADO_CHOICES,default='BORRADOR')
     created_at = models.DateTimeField(auto_now_add=True)

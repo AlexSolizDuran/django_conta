@@ -6,10 +6,11 @@ from .movimiento import MovimientoCreateSerializer,MovimientoDetailSerializer
 
 class AsientoContableCreateSerializer(serializers.ModelSerializer):
     movimientos = MovimientoCreateSerializer(many=True)
+    fecha = serializers.DateField(required=False)
 
     class Meta:
         model = AsientoContable
-        fields = ["numero", "descripcion", "estado", "movimientos"]
+        fields = ["numero", "descripcion", "estado", "movimientos","fecha"]
         read_only_fields = ["numero"]  # numero generado automáticamente en el modelo
 
     def create(self, validated_data):
@@ -47,22 +48,15 @@ class AsientoContableCreateSerializer(serializers.ModelSerializer):
 
 class AsientoContableDetailSerializer(serializers.ModelSerializer):
     movimientos = MovimientoDetailSerializer(many=True, read_only=True)
-    fecha = serializers.SerializerMethodField()
+    
     class Meta:
         model = AsientoContable
         fields = ["id","descripcion", "numero","estado", "movimientos","fecha"]
         
-    def get_fecha(self,obj):
-        return obj.created_at.date().isoformat()
 
 
 class AsientoContableListSerializer(serializers.ModelSerializer):
-    fecha = serializers.SerializerMethodField()
-
+    
     class Meta:
         model = AsientoContable
         fields = ["id", "numero", "descripcion", "estado", "fecha"]
-
-    def get_fecha(self, obj):
-        # Si tu modelo tiene un campo created_at tipo DateTimeField:
-        return obj.created_at.date().isoformat()
