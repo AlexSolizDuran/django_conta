@@ -4,7 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from django.db.models.functions import Cast, Substr
 from django.db.models import CharField
-
+from rest_framework import filters
 from ...utils.log import registrar_evento  # 🔹 Importamos la función de log
 
 from ..models import Cuenta,ClaseCuenta
@@ -20,6 +20,10 @@ class CuentaViewSet(viewsets.ModelViewSet):
     queryset = Cuenta.objects.all()
     serializer_class = CuentaListSerializer
     permission_classes = [IsAuthenticated]
+    
+    # 💡 Configuración de Filtros
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter] # Añadimos SearchFilter
+    search_fields = ['codigo', 'nombre'] # Permitimos buscar por código o nombre
     
     def get_serializer_class(self):
         if self.action == 'list':

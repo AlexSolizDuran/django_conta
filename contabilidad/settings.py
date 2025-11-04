@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'contabilidad.apps.reporte',
     'contabilidad.apps.plantilla',
     'contabilidad.apps.suscripcion',
+    'contabilidad.apps.ia_reporte',
+    'contabilidad.apps.modelos_ia',
 ]
 ## parte de djangoRestFramework
 REST_FRAMEWORK = {
@@ -102,6 +104,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'contabilidad.urls'

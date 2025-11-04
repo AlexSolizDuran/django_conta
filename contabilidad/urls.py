@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('contabilidad.apps.reporte.urls')),
     path('',include('contabilidad.apps.suscripcion.urls')),
     path('', include('contabilidad.apps.ia_reporte.urls')),
+    path('', include('contabilidad.apps.modelos_ia.urls')),
     # Also expose usuario app under the legacy API prefix used by the frontend
     path('api/', include('contabilidad.apps.usuario.urls')),
 
